@@ -1,0 +1,35 @@
+#cs __________________________________________________________________________
+		
+	脚本作者: Celading
+	脚本功能: Win10 Update Helper Deleter(Win10升级助手删除方程式)
+	
+#ce __________________________________Code____________________________________
+#NoTrayIcon
+#region
+#PRE_Icon=ico.ico
+#PRE_Res_Comment=Win10升级助手删除工具
+#PRE_Res_Description=Win10 Update Helper Deleter
+#PRE_Res_Fileversion=1.0.0.3683
+#PRE_Res_ProductVersion=1.1.2333
+#PRE_Res_LegalCopyright=Celading SoftWare
+#PRE_Res_requestedExecutionLevel=None
+#endregion ;**** 参数创建于 ACNWrapper_GUI ****
+;开始
+If ProcessExists("GWX.exe") Then ;假如win10更新提示助手正在运行         「Change1」
+	Dim $Do = MsgBox(1, "Are you 确定？", "即将执行删除Win10升级助手")
+	Select
+		Case $Do = 1
+			ToolTip("正在删除", 0, 0, "删除，删除，吱~", 1)
+			Sleep(100)
+			RunWait('"' & @ComSpec & '" /c wusa.exe /uninstall /kb:3035583', '', @SW_HIDE) ;调用CMD卸载KB3035583更新
+			RunWait('"' & @ComSpec & '" /c wusa.exe /uninstall /KB3035583', '', @SW_HIDE) ;调用CMD卸载KB3035583更新备用
+			ProcessClose("GWX.exe") ;结束win10更新提示助手
+			ProcessWaitClose("GWX.exe") ;等待win10更新提示助手结束
+			FileDelete("C:\Windows\System32\GWX") ;删除win10更新提示助手
+		Case $Do = 2
+			Exit
+	EndSelect
+Else ;假如win10更新提示助手正在运行
+	MsgBox(32 + 4096, "WARNING！！！", "没事找我干嘛？那玩意根本不在好伐。")
+EndIf
+;结束
