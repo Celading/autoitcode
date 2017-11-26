@@ -9,9 +9,9 @@
 #PRE_Icon=ico.ico
 #PRE_Res_Comment=Win10升级助手删除工具
 #PRE_Res_Description=Win10 Update Helper Deleter
-#PRE_Res_Fileversion=1.0.0.3683
+#PRE_Res_Fileversion=1.0.0.3692
 #PRE_Res_ProductVersion=1.1.2333
-#PRE_Res_LegalCopyright=Celading SoftWare
+#PRE_Res_LegalCopyright=Celading Smallthg
 #PRE_Res_requestedExecutionLevel=None
 #endregion ;**** 参数创建于 ACNWrapper_GUI ****
 ;开始
@@ -29,7 +29,7 @@ If ProcessExists("GWX.exe") Then ;假如win10更新提示助手正在运行     
 		Case $Do = 2
 			Exit
 	EndSelect
-Else ;假如win10更新提示助手正在运行
+Else ;;假如win10更新提示助手不存在
 	MsgBox(32 + 4096, "WARNING！！！", "没事找我干嘛？那玩意根本不在好伐。")
 EndIf
 ;结束
